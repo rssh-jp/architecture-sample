@@ -1,0 +1,25 @@
+# Go build and test outputs
+*.exe
+*.exe~
+*.test
+*.out
+/bin/
+/build/
+/dist/
+
+# Coverage and profiling reports
+coverage.out
+*.prof
+
+# Local configuration and databases
+.env
+.env.*
+*.db
+*.sqlite
+*.sqlite3
+
+# Editor and OS files
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db

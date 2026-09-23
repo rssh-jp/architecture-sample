@@ -1,4 +1,4 @@
-.PHONY: run build check test vet fmt doc
+.PHONY: run build check test vet fmt setup doc
 
 DOC_ADDR ?= localhost:7777
 
@@ -20,7 +20,10 @@ vet:
 fmt:
 	go fmt ./...
 
+setup:
+	go install golang.org/x/tools/cmd/godoc@latest
+
 doc:
-	@echo "ドキュメントを http://$(DOC_ADDR)/ で公開します"
-	go run ./cmd/docserver -addr=$(DOC_ADDR)
+	@echo "ドキュメントを http://$(DOC_ADDR)/pkg/sample で公開します"
+	godoc -http=$(DOC_ADDR)
 

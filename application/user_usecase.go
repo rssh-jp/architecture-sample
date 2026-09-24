@@ -1,21 +1,20 @@
-package usecase
+package application
 
 import (
 	"context"
 	"sample/domain"
-	"sample/infrastructure/txmanager"
 )
 
 // UserUseCase はユーザーと注文に関するアプリケーション処理をまとめます。
 type UserUseCase struct {
-	txManager    txmanager.TxManager
+	txManager    TxManager
 	userRepo     domain.UserRepository
 	orderRepo    domain.OrderRepository
 	queryService UserQueryService
 }
 
 func NewUserUseCase(
-	txm txmanager.TxManager,
+	txm TxManager,
 	ur domain.UserRepository,
 	or domain.OrderRepository,
 	qs UserQueryService,

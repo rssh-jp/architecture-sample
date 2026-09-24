@@ -1,5 +1,5 @@
-// Package usecase はアプリケーションのユースケースと参照用データを定義します。
-package usecase
+// Package application はアプリケーションのユースケースとポートを定義します。
+package application
 
 import "context"
 

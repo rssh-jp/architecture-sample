@@ -5,22 +5,18 @@ import (
 	"context"
 	"database/sql"
 	"fmt"
+	"sample/application"
 )
 
 // txKey はトランザクションをコンテキストへ格納するための非公開キーです。
 type txKey struct{}
-
-// TxManager はトランザクション境界を管理するインターフェースです。
-type TxManager interface {
-	Do(ctx context.Context, fn func(ctx context.Context) error) error
-}
 
 type sqlTxManager struct {
 	db *sql.DB
 }
 
 // NewSqlTxManager はSQLデータベース用のトランザクション管理器を生成します。
-func NewSqlTxManager(db *sql.DB) TxManager {
+func NewSqlTxManager(db *sql.DB) application.TxManager {
 	return &sqlTxManager{db: db}
 }
 

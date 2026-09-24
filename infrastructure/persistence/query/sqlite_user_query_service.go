@@ -4,7 +4,7 @@ package query
 import (
 	"context"
 	"database/sql"
-	"sample/usecase"
+	"sample/application"
 )
 
 type sqliteUserQueryService struct {
@@ -12,12 +12,12 @@ type sqliteUserQueryService struct {
 }
 
 // NewSQLiteUserQueryService はSQLite用の参照サービスを生成します。
-func NewSQLiteUserQueryService(db *sql.DB) usecase.UserQueryService {
+func NewSQLiteUserQueryService(db *sql.DB) application.UserQueryService {
 	return &sqliteUserQueryService{db: db}
 }
 
 // GetUserOrderSummary はユーザーと注文を結合し、注文数と合計金額を取得します。
-func (q *sqliteUserQueryService) GetUserOrderSummary(ctx context.Context, userID int64) (*usecase.UserOrderSummaryDTO, error) {
+func (q *sqliteUserQueryService) GetUserOrderSummary(ctx context.Context, userID int64) (*application.UserOrderSummaryDTO, error) {
 	// 注文がないユーザーも取得できるように左外部結合を使用します。
 	query := `
 		SELECT
@@ -31,7 +31,7 @@ func (q *sqliteUserQueryService) GetUserOrderSummary(ctx context.Context, userID
 		GROUP BY u.id, u.name
 	`
 
-	dto := &usecase.UserOrderSummaryDTO{}
+	dto := &application.UserOrderSummaryDTO{}
 	err := q.db.QueryRowContext(ctx, query, userID).Scan(
 		&dto.UserID,
 		&dto.UserName,

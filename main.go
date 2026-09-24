@@ -9,10 +9,10 @@ import (
 
 	_ "modernc.org/sqlite"
 
+	"sample/application"
 	"sample/infrastructure/persistence/query"
 	"sample/infrastructure/persistence/repository"
 	"sample/infrastructure/txmanager"
-	"sample/usecase"
 )
 
 func main() {
@@ -34,7 +34,7 @@ func main() {
 	queryService := query.NewSQLiteUserQueryService(db)
 
 	// 2. ユースケース層の生成（DI）
-	userUseCase := usecase.NewUserUseCase(txManager, userRepo, orderRepo, queryService)
+	userUseCase := application.NewUserUseCase(txManager, userRepo, orderRepo, queryService)
 
 	ctx := context.Background()
 

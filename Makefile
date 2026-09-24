@@ -3,13 +3,13 @@
 DOC_ADDR ?= localhost:7777
 
 run:
-	go run .
+	go run ./cmd/check
 
 build:
 	go build ./...
 
 check:
-	go build ./... && go run .
+	go build ./... && go run ./cmd/check
 
 test:
 	go test ./...
